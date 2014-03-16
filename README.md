@@ -1,6 +1,6 @@
 burstiDAtor
 ===========
-A lightweight burst detector for dopaminergic (DA) neurons
+A lightweight burst detector for dopaminergic (DA) neurons.
 
 Features
 --------
@@ -26,7 +26,7 @@ CoSMoMVPA is developed by:
 
 Contribution guidelines
 -----------------------
-The preferred way to contribute is through github. 
+The preferred way to contribute is through github: https://github.com/nno/burstiDAtor
 
 License
 -------
