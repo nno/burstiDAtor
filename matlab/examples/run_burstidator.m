@@ -14,7 +14,7 @@ trgdir=[rootdir 'matlab_output'];
 srcfn=[srcdir '02-ASA-VTA 19-10-11 D3 N7 8930.pr.txt'];
 
 % read onsets
-onsets=read_wavemark_onsets(srcfn);
+onsets=buda_read_wavemark_onsets(srcfn);
 
 % show onsets
 fprintf('Onsets:\n')
@@ -22,11 +22,11 @@ disp(onsets)
 
 % read and print bursts
 fprintf('Bursts\n')
-bursts=detect_bursts_canonical(onsets);
+bursts=buda_detect_bursts_canonical(onsets);
 disp(bursts)
 
 % read and print summary
-summary=summarize_bursts_canonical(srcfn);
+summary=buda_summarize_bursts_canonical(srcfn);
 fprintf('Summary:\n')
 disp(summary)
 

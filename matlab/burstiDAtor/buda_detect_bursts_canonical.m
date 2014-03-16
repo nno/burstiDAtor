@@ -1,7 +1,7 @@
-function bursts=detect_bursts_canonical(spikes,start_ISI,continue_ISI,min_nspikes)
+function bursts=buda_detect_bursts_canonical(spikes,start_ISI,continue_ISI,min_nspikes)
 % 'canonical' DA burst detection
 %
-% bursts=detect_bursts_canonical(spikes,start_ISI,continue_ISI,min_nspikes)
+% bursts=buda_detect_bursts_canonical(spikes,start_ISI,continue_ISI,min_nspikes)
 %
 % Inputs:
 %   onsets       Nx1 vector with onsets of spikes. This can be from

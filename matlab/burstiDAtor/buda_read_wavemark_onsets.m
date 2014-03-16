@@ -1,7 +1,7 @@
-function onsets=read_wavemark_onsets(fn)
+function onsets=buda_read_wavemark_onsets(fn)
 % reads a wavemark file and returns the onset of each wavemark
 %
-% onsets=read_wavemark_onsets(fn)
+% onsets=buda_read_wavemark_onsets(fn)
 %
 % Input:
 %   fn        filename of wavemark file

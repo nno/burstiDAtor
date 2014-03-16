@@ -1,7 +1,7 @@
-function summary=summarize_bursts_canonical(fn)
+function summary=buda_summarize_bursts_canonical(fn)
 % summarizes burst information
 %
-% summary=summarize_bursts_canonical(fn)
+% summary=buda_summarize_bursts_canonical(fn)
 % 
 % Input:
 %  fn           input filename
@@ -16,8 +16,8 @@ function summary=summarize_bursts_canonical(fn)
 % NNO Oct 2013
 
 
-spikes=read_wavemark_onsets(fn);
-bursts=detect_bursts_canonical(spikes);
+spikes=buda_read_wavemark_onsets(fn);
+bursts=buda_detect_bursts_canonical(spikes);
 
 [foo,short_fn,ext]=fileparts(fn);
 
