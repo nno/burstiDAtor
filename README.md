@@ -35,7 +35,7 @@ Citation
 --------
 If you use burstiDAtor for a scientific publication, please cite:
 
-Oosterhof, N.N. & Oosterhof, C.A. (2012-2014)", BurstiDAtor: A lightweight discharge analysis program for neural extracellular single unit recordings. https://github.com/nno/burstiDAtor.
+Oosterhof, N.N. & Oosterhof, C.A. (2012-2014), BurstiDAtor: A lightweight discharge analysis program for neural extracellular single unit recordings. https://github.com/nno/burstiDAtor.
 
 
 License
