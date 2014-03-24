@@ -4,9 +4,9 @@ A lightweight discharge analysis program for neural extracellular single unit re
 
 Features
 --------
-- Compute summary statistics for neural spike recordings (e.g. firing rate, firing frequency, number of spikes, inter-spike interval). 
+- Compute summary statistics for neural spike recordings (e.g. firing frequency, number of spikes, inter-spike interval, number of burst, burst frequency). 
 - Burst detection based on criterion of maximum spike intervals to start and continue a burst (80 and 160 ms by default, respectively). 
-- Supports wavemark analysis in spike2 (Cambridge ELectronic Design, Cambridge, UK) input files.
+- Supports wavemark analysis in Spike2 (Cambridge ELectronic Design, Cambridge, UK) input files.
 - Implementations in Matlab and java.
 - Free/Open Source Software (MIT License).
 
@@ -33,10 +33,9 @@ The preferred way to contribute is through github: https://github.com/nno/bursti
 
 Citation
 --------
-If you use burstiDAtor, please cite:
+If you use burstiDAtor for a scientific publication, please cite:
 
 Oosterhof, N.N. & Oosterhof, C.A. (2012-2014)", BurstiDAtor: A lightweight discharge analysis program for neural extracellular single unit recordings. https://github.com/nno/burstiDAtor.
-
 
 
 License
