@@ -30,6 +30,15 @@ Contribution guidelines
 -----------------------
 The preferred way to contribute is through github: https://github.com/nno/burstiDAtor
 
+
+Citation
+--------
+If you use burstiDAtor, please cite:
+
+Oosterhof, N.N. & Oosterhof, C.A. (2012-2014)", BurstiDAtor: A lightweight discharge analysis program for neural extracellular single unit recordings. https://github.com/nno/burstiDAtor.
+
+
+
 License
 -------
 MIT License; for details, see the COPYING file.
