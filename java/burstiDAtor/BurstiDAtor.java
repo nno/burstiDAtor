@@ -14,7 +14,8 @@ public class BurstiDAtor extends JFrame implements ActionListener {
     final static String AUTHORS = "Oosterhof, N.N. & Oosterhof, C.A. (2012-2014)";
 
     final static String VERSION = "0.10", NAME = "BurstiDAtor",
-            DESC = "a neural spike/burst detector";
+            DESC = "A lightweight discharge analysis program for " 
+                        + "neural extracellular single unit recordings";
     final static String LICENSE_BODY = "Permission is hereby granted, free "
             + "of charge, to any person obtaining a copy of this software\n"
             + "and associated documentation files (the \"Software\"), to "

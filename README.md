@@ -1,10 +1,12 @@
 burstiDAtor
 ===========
-A lightweight burst detector for dopaminergic (DA) neurons.
+A lightweight discharge analysis program for neural extracellular single unit recordings.
 
 Features
 --------
-- Burst detection based on criterion of maximum spike intervals to start and continue a burst (160 and 80 ms by default, respectively). 
+- Compute summary statistics for neural spike recordings (e.g. firing rate, firing frequency, number of spikes, inter-spike interval). 
+- Burst detection based on criterion of maximum spike intervals to start and continue a burst (80 and 160 ms by default, respectively). 
+- Supports wavemark analysis in spike2 (Cambridge ELectronic Design, Cambridge, UK) input files.
 - Implementations in Matlab and java.
 - Free/Open Source Software (MIT License).
 
