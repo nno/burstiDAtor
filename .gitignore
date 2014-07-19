@@ -4,3 +4,5 @@
 *.m~
 .git.bfg-report
 *.md.sw?
+build
+*.jar
