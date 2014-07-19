@@ -22,9 +22,9 @@ Getting started
 
 Developers
 ----------
-CoSMoMVPA is developed by:
-- [Nikolaas N. Oosterhof](http://haxbylab.dartmouth.edu/ppl/nno.html).
-- [Chris A. Oosterhof].
+burstiDAtor is developed by:
+- Nikolaas N. Oosterhof
+- Chris A. Oosterhof
 
 Contribution guidelines
 -----------------------
