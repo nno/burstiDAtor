@@ -1,3 +1,5 @@
+# Based on http://stackoverflow.com/questions/12684771/how-can-i-make-makefile-for-java-with-external-jar-file, Freya Ren, July 2014
+
 # Set the file name of your jar package:
 JAR_PKG = build/java/BurstiDAtor.jar
 
