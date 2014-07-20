@@ -1,8 +1,7 @@
 *.DS_Store
-*.swp
 *.css
 *.m~
 .git.bfg-report
-*.md.sw?
 build
 *.jar
+.*.sw?
