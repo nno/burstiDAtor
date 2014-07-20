@@ -28,7 +28,7 @@ Getting started
 
 Documentation
 -------------
-- A pdf version of the documentation is available fromhttps://github.com/nno/burstiDAtor/releases. 
+- A pdf version of the documentation is available from https://github.com/nno/burstiDAtor/releases. 
 - Sources for the documentation are provided in the ``doc`` directory. 
 - Documentation can be built in ``pdf`` or ``html`` formats using sphinx-doc (http://sphinx-doc.org/latest/install.html) and the ``Makefile`` (Unix-like systems) or ``make.bat`` (MS Windows systems) in the ``doc`` directory. 
 
