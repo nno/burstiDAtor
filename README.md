@@ -5,7 +5,7 @@ A lightweight discharge analysis program for neural extracellular single unit re
 Features
 --------
 - Compute summary statistics for neural spike recordings (e.g. firing frequency, number of spikes, inter-spike interval, number of burst, burst frequency). 
-- Burst detection based on criterion of maximum spike intervals to start and continue a burst (80 and 160 ms by default, respectively). 
+- Burst detection based on criterion of maximum spike intervals to start and continue a burst (80 and 160 ms by default, respectively), as proposed by Grace & Bunney (1984).
 - Supports wavemark analysis in Spike2 (Cambridge ELectronic Design, Cambridge, UK) input files.
 - Implementations in Matlab and java.
 - Free/Open Source Software (MIT License).
@@ -18,7 +18,19 @@ Requirements
 Getting started
 ---------------
 - Matlab: see the example in matlab/examples.
-- Java: compile ``burstiDAtor/*.java``, then run burstiDAtor/burstiDAtor.class. 
+- Java:
+    + For non-programmers: download and run the Java archive (``BurstiDAtor.jar``) from https://github.com/nno/burstiDAtor/releases. 
+    + For programmers (requires a Java compiler): compile the sources in one of the following ways:
+        * ``make build`` to build Java ``.class`` files.
+        * ``make run`` to build Java ``.class`` files and run burstiDAtor.
+        * ``make jar`` to build a Java archive (``.jar``) file.
+        * Manually run ``javac burstiDAtor/*.java`` in the ``java directory``, then run ``java burstiDAtor/burstiDAtor``. 
+
+Documentation
+-------------
+- A pdf version of the documentation is available fromhttps://github.com/nno/burstiDAtor/releases. 
+- Sources for the documentation are provided in the ``doc`` directory. 
+- Documentation can be built in ``pdf`` or ``html`` formats using sphinx-doc (http://sphinx-doc.org/latest/install.html) and the ``Makefile`` (Unix-like systems) or ``make.bat`` (MS Windows systems) in the ``doc`` directory. 
 
 Developers
 ----------
@@ -35,7 +47,7 @@ Citation
 --------
 If you use burstiDAtor for a scientific publication, please cite:
 
-Oosterhof, N.N. & Oosterhof, C.A. (2012-2014), BurstiDAtor: A lightweight discharge analysis program for neural extracellular single unit recordings. https://github.com/nno/burstiDAtor.
+Oosterhof, N.N. & Oosterhof, C.A. (2013), BurstiDAtor: A lightweight discharge analysis program for neural extracellular single unit recordings. https://github.com/nno/burstiDAtor.
 
 BibTeX:
 ```
