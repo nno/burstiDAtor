@@ -49,7 +49,7 @@ new:
 clean:
 	rm -frv build
 
-run:
+run: new build
 	java -cp build/java $(ENTRY_POINT)
 
 jar: new build
