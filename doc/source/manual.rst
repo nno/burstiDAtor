@@ -14,27 +14,39 @@ Required software to run the steps described in this manual:
 Spike analysis in Spike2
 ------------------------
 
-* Analyze all neurons in the folder ``recordings`` using the wavemark analysis tool (file;analysis; new wavemark... ;  adjust horizontal & vertical triggers, check the box *make templater* ;  click the *play* button; new channel). 
+* Analyze all neurons in the folder ``recordings`` using the wavemark analysis tool:
+
+    + file; analysis; new wavemark... 
+    + adjust horizontal & vertical triggers
+    + check the box *make templater* 
+    + click the *play* button
+    + new channel
+
 * After verifying that the wavemark channel reflects the firing activity of the neurons in the recording channel, select the wavemark channel (double-click on it, or select *view* ;  *show/hide channel*).
 
-    + In the folder ``wavemark_analysis``, example wavemark channels are provided for each recordings.
+    + In the folder ``wavemark_analysis``, example wavemark channels are provided for each recordings. [TODO]
 
-* Select *file* ;  *export as*. 
+* Select *file*;  *export as*. 
 * Enter a name, and in the *save as type* drop down box, select *text file*; *ok*.
 * Enter the interval of which analysis is desired and click ok. 
-  + See the folder ``wavemark_output`` for the example wavemark channels exported as ``*.txt`` files.
+
+  + See the folder ``wavemark_output`` for the example wavemark channels exported as ``*.txt`` files. [TODO]
 
 Most work is done now. To let burstiDAtor do its magic, we only need to tell it which text files we want to analyze. 
 
 Burstidator analysis
 --------------------
 * Start burstiDAtor
-  + usually this involves double-clicking the burstiDAtor ``.jar`` file.
+
+  + usually this involves double-clicking the ``burstiDAtor.jar`` file.
+
 * Click *Wizard*.
 * Browse to the folder containing the ``*.txt`` output files from Spike2 (see above).
 * Click *open*. BurstiDAtor will display the number of ``*.txt`` files in that folder.
-  + it ignores any files ending with ``*_summary.txt``, because the output from burstiDAtor is written to files with such names (see below).
-* + it proposes to write its output in that same folder; click yes. 
+
+  + it ignores any files ending with ``_summary.txt``, because the output from burstiDAtor is written to files with such names (see below).
+  + it proposes to write its output in that same folder; click yes. 
+
 * Analysis is done almost instantly, and we're done!
 
 For each text file, burstidDAtor has now generated a ``*_summary.txt`` file that contains detailed information regarding the discharge actitivity of each individual neuron. Most importantly however, it has summarized the average discharge activity for each neuron in a ``*_summary.txt`` file and the more convenient ``*_short_summary.txt`` (simply select this file and drag it into Excel).

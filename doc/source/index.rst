@@ -19,6 +19,7 @@ Source code is available from https://github.com/nno/burstiDAtor.
 .. toctree::
     :maxdepth: 2
    
+    readme
     get_started 
     manual
     faq
