@@ -1,3 +1,5 @@
+# This Makefile is for building the java sources
+#
 # Based on http://stackoverflow.com/questions/12684771/how-can-i-make-makefile-for-java-with-external-jar-file, Freya Ren, July 2014
 
 # Set the file name of your jar package:
@@ -26,7 +28,8 @@ vpath %.java java
 
 # show help message by default
 Default:
-	@echo "make new: new project, create src, bin, res dirs."
+	@echo "Choose one of the following to build the java sources"
+	@echo "make new: new project."
 	@echo "make build: build project."
 	@echo "make clean: clear classes generated."
 	@echo "make rebuild: rebuild project."
