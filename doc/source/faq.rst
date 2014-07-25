@@ -2,8 +2,9 @@ Frequently Asked/Anticipated Questions
 ======================================
 
 - Why is the program called 'burstiDAtor'?
-    + It is a reference to the character 'Trogdor the Burninator' in the Homestar Runner series. The capitalization of 'DA' refers to dopamine, a neurotransmitter released by cells of which the neural burst response profiles can be analyzed using burstiDAtor. 
-      Earlier versions were named 'Vucmoore the bustiDAtor', which rhymed better with the full name of Trogdor. For reasons of simplicity, amongst other things, it was shortened to its current name.
+    + It is a reference to 'Trogdor the Burninator', a character in the Homestar Runner series. The capitalization of 'DA' refers to dopamine, a neurotransmitter released by cells of which the neural burst response profiles can be analyzed using burstiDAtor. 
+
+      Earlier versions were named 'Vucmoore the burstiDAtor', which rhymes better with Trogdor's full name. For reasons of simplicity, amongst other things, it was shortened to its current name.
 
 .. _`burst_detection`:
 
@@ -17,7 +18,7 @@ Frequently Asked/Anticipated Questions
     + See [OO13]_
 
 - Under what license is burstiDAtor provided?
-    + Under the MIT license (see :ref:`license`; the COPYING file in the source, or the 'about' section if you are using a Java archive ``.jar`` file). The exact legal terms are described in the license, but it roughly means that you can use the software freely however you want and that you can share the program with others and/or improve on it, as long as you do not remove copyright notices and do not sue us for unexpected or unwanted behaviour.
+    + Under the MIT license (see :ref:`license`; the COPYING file in the source, or the 'about' section if you are using a Java archive (``burstiDAtor.jar``) file). We provide the software free of charge in the hope it will be useful, but do not provide any kind of warranty. The exact legal terms are described in the license, but it roughly means that you can use the software freely however you want and that you can share the program with others and/or improve on it, as long as you do not remove copyright notices and do not sue us for unexpected or undesired behaviour of the software.
 
 .. [OO13] Oosterhof, N.N. & Oosterhof, C.A. (2012-2014), BurstiDAtor: A lightweight discharge analysis program for neural extracellular single unit recordings. Available from https://github.com/nno/burstiDAtor.
 
