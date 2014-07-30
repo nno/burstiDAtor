@@ -8,6 +8,7 @@ JAR_PKG = build/java/BurstiDAtor.jar
 # Set your entry point of your java app:
 ENTRY_POINT = burstiDAtor/BurstiDAtor
 
+BUILD_DIR = build/java
 
 SOURCE_FILES = \
 java/burstiDAtor/Burst.java \
@@ -36,7 +37,7 @@ Default:
 	@echo "make run: run your app."
 	@echo "make jar: package your project into a executable jar."
 
-build: $(SOURCE_FILES:.java=.class)
+build: $(SOURCE_FILES:.java=.class) 
 
 # pattern rule
 %.class: %.java
@@ -46,16 +47,18 @@ rebuild: clean build
 
 .PHONY: new clean run jar
 
-new:
+new: ${BUILD_DIR}
+
+${BUILD_DIR}:
 	mkdir -pv build/java
 
 clean:
 	rm -frv build
 
-run: new build
+run: build
 	java -cp build/java $(ENTRY_POINT)
 
-jar: new build
+jar: build
 	jar cvfe $(JAR_PKG) $(ENTRY_POINT) -C build/java .
 
 
