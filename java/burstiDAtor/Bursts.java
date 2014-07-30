@@ -240,6 +240,9 @@ public class Bursts {
         int nbs = bs.size();
         p.put("nBu", nbs);
 
+        String nbs_or_nada="" + (nbs==0 ? "" : nbs);
+        p.put("nBuOrNada", nbs_or_nada);
+
         if (nbs == 0) {
             return p;
         }
