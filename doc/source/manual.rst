@@ -86,9 +86,9 @@ Summary file format
 -------------------
 The summary file provides the following information:
 
-======================= ==============================================
+======================= ==================================================
 label                   meaning
-======================= ==============================================
+======================= ==================================================
 firstSp	                First spike
 lastSp                  Last spike 
 recDur                  Recording duration
@@ -96,14 +96,14 @@ recDurRndUp             Recordign duration rounded up
 nSp                     Total number of spikes
 avgSpRate               Average spikes (seconds per spike)
 avgSpFreq               Average spike frequency (spikes per second)
-nBu                     Total number of bursts
+nBu                     Total number of bursts, set to 0 if no bursts
+nBuOrNada               Total number of bursts, set to empty if no bursts
 pctSpInBu               Percent of spikes in burst
 interBuIvl              Inter-burst interval
 firstToLastBuCentered   First to last burst centered
 CycleBu	                Burst cycle (time/bursts)
 avgBuFreq               Average burst frequency (bursts/s)
 avgBuFreq60             Average burst frequency per minute (bursts/min)
-avgBuFreqRndUp          Average burst frequency rounded up
 mu_nSp                  Average number of spikes/burst
 md_nSp                  Median number of spikes/burst
 std_nSp                 Standard deviation spikes/burst
@@ -116,7 +116,8 @@ std_SpFreq              Standard deviation firing frequency in bursts
 mu_interSp              Mean inter-spike interval (ISI)
 md_interSp              Median ISI
 std_interSp             Standard deviation ISI
-======================= ==============================================
+======================= ==================================================
+
 
 
 
