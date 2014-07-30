@@ -26,7 +26,7 @@ public class BurstWizard {
 		}
 
 		Settings s = Settings.getInstance();
-		String path = dir.getParent();
+		String path = dir.getPath();
 
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
 		String t = ft.format(new Date());
