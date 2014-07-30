@@ -13,6 +13,9 @@ public class BurstWizard {
 		processDirectory(new File(dir));
 	}
 
+    /**
+     * Run the wizard using a previously selected directory
+     */
 	public static void processDirectory(File dir) throws Exception {
 		Vector<File> files = getBurstFiles(dir);
 		int n = files.size();
@@ -74,6 +77,9 @@ public class BurstWizard {
 		Utils.writeToText(new File(shortfnout), shortsummary);
 	}
 
+    /** 
+     * Run the wizard
+     */
 	public static void burstDirectoryWizard(String rootdir) throws Exception {
 		File d = null;
 		if (rootdir == null) {
