@@ -67,16 +67,6 @@ public class Props {
         return f + " : " + m;
     }
 
-    public static void main(String... _) {
-        Props p = new Props();
-        p.put("a", 1.2d);
-        p.put("b", "hi");
-        p.put("c", 42);
-        Props q = p.filter(null);
-        System.out.println(q);
-
-    }
-
     public Vector<String> keyList() {
         return new Vector<String>(f);
     }
