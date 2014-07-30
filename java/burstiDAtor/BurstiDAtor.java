@@ -13,8 +13,9 @@ public class BurstiDAtor extends JFrame implements ActionListener {
 
     final static String AUTHORS = "Oosterhof, N.N. & Oosterhof, C.A. (2012-2014)";
 
-    final static String VERSION = "0.10", NAME = "BurstiDAtor",
-            DESC = "A lightweight discharge analysis program for " 
+    final static String VERSION = "0.11-rc1";
+    final static String NAME = "burstiDAtor";
+    final static String DESC = "a lightweight discharge analysis program for " 
                         + "neural extracellular single unit recordings";
     final static String LICENSE_BODY = "Permission is hereby granted, free "
             + "of charge, to any person obtaining a copy of this software\n"
@@ -36,9 +37,11 @@ public class BurstiDAtor extends JFrame implements ActionListener {
             + "SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.";
     final static String LICENSE = String.format("Copyright %s\n\n%s", AUTHORS,
             LICENSE_BODY);
-    final static String USE = String.format("If you have used this program "
-            + "for a scientific publication, please cite:"
-            + "\n %s %s, %s (version %s)", AUTHORS, NAME, DESC, VERSION);
+    final static String URL = "github.com/nno/burstiDAtor";
+    final static String USE = String.format("If you use this program "
+            + "for a scientific publication, please cite:\n\n"
+            + "\t%s %s:\n\t%s (version %s)\n\tavailable from %s", 
+                AUTHORS, NAME, DESC, VERSION, URL);
 
     JButton runWizard, settings, about, quit;
 
