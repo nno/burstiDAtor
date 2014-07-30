@@ -284,7 +284,9 @@ public class Bursts {
         p.put("avgBuFreq", ((double) nbs) / recdur);
         p.put("avgBuFreqRndUp", ((double) nbs) / recdurrnd);
 
-        // Êcompute stats across bursts
+        p.put("avgBuFreq60", ((double) nbs) / recdur / 60.0);
+
+        // compute stats across bursts
         final String[] statfields = { "nSp", "SpFreq", "BuDur", "interSp" };
         final String[] summarytps = { "mu", "md", "std" };
         Props sumstats = Props.getSummaryStats(getBurstStats(statfields),

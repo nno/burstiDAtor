@@ -13,8 +13,8 @@ public class Settings extends Props {
         put("doubleformat", "%.5f");
         put("rndupdur", 10d);
         put("shortsummaryfields", "filename,recDurRndUp,avgSpFreqRndUp,"
-                + "nBu,avgBuFreq,avgBuFreqRndUp,pctSpInBu,"
-                + "mu_nSp,mu_interSp");
+                + "nBu,nBuOrNada,avgBuFreq,avgBuFreqRndUp,avgBuFreq60,"
+                + "pctSpInBu,mu_nSp,mu_interSp");
         put("inputext", "txt");
         put("summaryappend", "_summary.txt");
         put("shortsummaryappend", "_short_summary.txt");
