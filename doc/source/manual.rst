@@ -43,13 +43,13 @@ Spike analysis in Spike2
 
 .. figure:: _static/wavemark_channel.png
 
-   Visualization of a wavemark channel in Spike2
+   Visualization of a wavemark channel in Spike2. For noise filtering purposes, wavemark 0 has been removed from the wavemark channel. 
 
 .. _fig_wavemark_channel_detail:
 
 .. figure:: _static/wavemark_channel_detail.png
 
-   An zoomed-in visualization of a wavemark channel in Spike2
+   An zoomed-in visualization of a wavemark channel in Spike2. For noise filtering purposes, wavemark 0 has been removed from the wavemark channel. 
 
 Most work is done now. To let burstiDAtor do its magic, we only need to tell it where the text files are located that we want to analyze. 
 
