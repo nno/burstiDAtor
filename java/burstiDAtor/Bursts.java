@@ -178,14 +178,16 @@ public class Bursts {
 
         String ext = settings.getS("inputext");
         String s = inputFile.getPath();
-        if (!s.endsWith(ext)) {
+        if (!s.toLowerCase().endsWith(ext.toLowerCase())) {
             return null;
         }
-
-        String s_cut = s.substring(s.lastIndexOf(ext));
+        
+        int pos=s.length()-ext.length();
+        String s_cut = s.substring(0, pos);
         String output_ext = settings.getS("summaryappend");
-        return new File(s_cut + output_ext);
+        File outputFile=new File(s_cut + output_ext);
 
+        return outputFile;
     }
 
     /**

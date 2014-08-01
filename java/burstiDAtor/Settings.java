@@ -15,7 +15,7 @@ public class Settings extends Props {
         put("shortsummaryfields", "filename,recDur,avgSpFreq,"
                 + "nBu,nBuOrNada,avgBuFreq,avgBuFreq60,"
                 + "pctSpInBu,mu_nSp,mu_interSp");
-        put("inputext", "txt");
+        put("inputext", ".txt");
         put("summaryappend", "_summary.txt");
         put("shortsummaryappend", "_short_summary.txt");
         put("allfilesprefix", "allfiles_");

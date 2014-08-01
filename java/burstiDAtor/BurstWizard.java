@@ -104,7 +104,7 @@ public class BurstWizard {
 			return null;
 		}
 		Settings settings = Settings.getInstance();
-		String ext = "." + settings.getS("inputext");
+		String ext = settings.getS("inputext").toLowerCase();
 		String append = settings.getS("summaryappend");
 
 		Vector<File> fs = new Vector<File>();
@@ -121,6 +121,7 @@ public class BurstWizard {
 
 	public static void main(String... _) throws Exception {
 		String d = "/Users/nick/organized/201_bursts/exampledata/VTA 2 day control";
+        d="/Users/nick/Downloads/Wizard test";
 		// d=null;
 		BurstWizard.burstDirectoryWizard(d);
 	}
