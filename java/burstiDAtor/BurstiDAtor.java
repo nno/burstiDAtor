@@ -13,7 +13,7 @@ public class BurstiDAtor extends JFrame implements ActionListener {
 
     final static String AUTHORS = "Oosterhof, N.N. & Oosterhof, C.A. (2012-2014)";
 
-    final static String VERSION = "0.11-rc1";
+    final static String VERSION = "0.11";
     final static String NAME = "burstiDAtor";
     final static String DESC = "a lightweight discharge analysis program for " 
                         + "neural extracellular single unit recordings";
