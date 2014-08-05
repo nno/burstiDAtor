@@ -12,7 +12,7 @@ public class Settings extends Props {
         put("linesep", "\n");
         put("doubleformat", "%.5f");
         put("rndupdur", 10d);
-        put("shortsummaryfields", "filename,recDur,avgSpFreq,"
+        put("shortsummaryfields", "filename,recDur,recDurRndUp,avgSpFreq,"
                 + "nBuOrNada,avgBuFreq,avgBuFreq60,"
                 + "pctSpInBu,mu_nSp,mu_interSp");
         put("inputext", ".txt");
