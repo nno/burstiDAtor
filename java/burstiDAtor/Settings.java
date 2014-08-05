@@ -10,7 +10,7 @@ public class Settings extends Props {
         put("DA_minspikesinburst", 2);
 
         put("5HT_maxburststart", .02d);
-        put("5HT_maxburstcontinue", .04d);
+        put("5HT_maxburstcontinue", .02d);
         put("5HT_minspikesinburst", 2);
 
         put("supported_neuron_types","DA,5HT");
