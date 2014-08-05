@@ -38,9 +38,11 @@ public class Bursts {
         Settings set = Settings.getInstance();
 
         // burst detection parameters
-        double spstartinterval = set.getD("maxburststart");
-        double spcontinueinterval = set.getD("maxburstcontinue");
-        int minspinburst = set.getI("minspikesinburst");
+        String prefix=set.getS("neuron_type")+"_";
+
+        double spstartinterval = set.getD(prefix+"maxburststart");
+        double spcontinueinterval = set.getD(prefix+"maxburstcontinue");
+        int minspinburst = set.getI(prefix+"minspikesinburst");
 
         // ensure that burst continue interval not less than burst
         // start interval
@@ -184,7 +186,8 @@ public class Bursts {
         
         int pos=s.length()-ext.length();
         String s_cut = s.substring(0, pos);
-        String output_ext = settings.getS("summaryappend");
+        String output_ext = "_" + settings.getS("neuron_type") + 
+                                        settings.getS("summaryappend");
         File outputFile=new File(s_cut + output_ext);
 
         return outputFile;

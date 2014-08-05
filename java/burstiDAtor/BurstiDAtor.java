@@ -43,18 +43,33 @@ public class BurstiDAtor extends JFrame implements ActionListener {
             + "\t%s %s:\n\t%s (version %s)\n\tavailable from %s", 
                 AUTHORS, NAME, DESC, VERSION, URL);
 
-    JButton runWizard, settings, about, quit;
+    JButton runWizard, neuronType, settings, about, quit;
 
     public BurstiDAtor() {
+        Settings set = Settings.getInstance();
+        String type = set.getS("neuron_type");
+
         runWizard = addButton("Wizard");
+        neuronType = addButton("");
         settings = addButton("Settings");
         about = addButton("About");
         quit = addButton("Quit");
+
+        setTypeCaption();
+
         setLayout(new FlowLayout());
         setVisible(true);
-        setSize(400, 60);
+        setSize(500, 60);
         setTitle("BurstiDAtor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private Settings getSettings() {
+        return Settings.getInstance();
+    }
+
+    private void setTypeCaption() {
+        neuronType.setText("type: " + getSettings().getS("neuron_type"));
     }
 
     private JButton addButton(String n) {
@@ -63,6 +78,24 @@ public class BurstiDAtor extends JFrame implements ActionListener {
         b.addActionListener(this);
         return b;
     }
+
+    private void changeNeuronType() {
+        Settings set = getSettings();
+        String type = set.getS("neuron_type");
+        String[] supported = set.getS("supported_neuron_types").split(",");
+
+        int n = supported.length;
+        for (int i=0; i<n; i++) {
+            if (type.equals(supported[i])) {
+                int j=(i+1) % n;
+                set.put("neuron_type", supported[j]);
+                setTypeCaption();
+                return;
+            }
+        }
+    }
+
+
 
     public void actionPerformed(ActionEvent e) {
         Object s = e.getSource();
@@ -80,7 +113,10 @@ public class BurstiDAtor extends JFrame implements ActionListener {
             msg = LICENSE + "\n\n" + USE;
         } else if (s == quit) {
             System.exit(0);
+        } else if (s == neuronType) {
+            changeNeuronType();
         }
+
         if (msg != null) {
             JOptionPane.showMessageDialog(this, msg);
         }

@@ -30,12 +30,14 @@ public class BurstWizard {
 
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
 		String t = ft.format(new Date());
+        String type = s.getS("neuron_type");
 
 		String pf = s.getS("allfilesprefix");
 		String append = s.getS("summaryappend");
 		String shortappend = s.getS("shortsummaryappend");
 
-		String prefix = String.format("%s%s%s%s", path, File.separator, pf, t);
+		String prefix = String.format("%s%s%s%s_%s", path, File.separator, 
+                                                pf, t, type);
 		String fnout = prefix + append;
 		String shortfnout = prefix + shortappend;
 		String msg = n + " files found\nOutput will be written in:\n" + fnout

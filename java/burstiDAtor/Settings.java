@@ -5,9 +5,17 @@ public class Settings extends Props {
 
     private Settings() {
         super();
-        put("maxburststart", .08d);
-        put("maxburstcontinue", .16d);
-        put("minspikesinburst", 2);
+        put("DA_maxburststart", .08d);
+        put("DA_maxburstcontinue", .16d);
+        put("DA_minspikesinburst", 2);
+
+        put("5HT_maxburststart", .02d);
+        put("5HT_maxburstcontinue", .04d);
+        put("5HT_minspikesinburst", 2);
+
+        put("supported_neuron_types","DA,5HT");
+        put("neuron_type",getS("supported_neuron_types").split(",")[0]);
+
         put("fieldsep", "\t");
         put("linesep", "\n");
         put("doubleformat", "%.5f");
