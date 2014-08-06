@@ -5,7 +5,7 @@ burstiDAtor is a lightweight discharge analysis program for neural extracellular
 Features
 --------
 - Compute summary statistics for neural spike recordings (e.g. firing frequency, number of spikes, inter-spike interval, number of burst, burst frequency). 
-- Burst detection based on criterion of maximum spike intervals to start and continue a burst (80 and 160 ms by default, respectively), as proposed by Grace & Bunney (1984).
+- Burst detection based on criterion of maximum spike intervals to start and continue a burst (dopamine (DA): 80 and 160 ms, Grace & Bunney (1984); serotonine (5HT): 20 and 20 ms, Hajos et al (2007).
 - Supports wavemark analysis in Spike2 (Cambridge ELectronic Design, Cambridge, UK) input files.
 - Implementations in Matlab and Java.
 - Free/Open Source Software (MIT License).
