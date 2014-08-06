@@ -3,6 +3,9 @@ package burstiDAtor;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Desktop;
+
+import java.net.URI;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -43,7 +46,7 @@ public class BurstiDAtor extends JFrame implements ActionListener {
             + "\t%s %s:\n\t%s (version %s)\n\tavailable from %s", 
                 AUTHORS, NAME, DESC, VERSION, URL);
 
-    JButton runWizard, neuronType, settings, about, quit;
+    JButton runWizard, neuronType, settings, about, manual, code, quit;
 
     public BurstiDAtor() {
         Settings set = Settings.getInstance();
@@ -53,13 +56,15 @@ public class BurstiDAtor extends JFrame implements ActionListener {
         neuronType = addButton("");
         settings = addButton("Settings");
         about = addButton("About");
+        manual = addButton("Manual");
+        code = addButton("Code");
         quit = addButton("Quit");
 
         setTypeCaption();
 
         setLayout(new FlowLayout());
         setVisible(true);
-        setSize(500, 60);
+        setSize(700, 60);
         setTitle("BurstiDAtor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -95,6 +100,19 @@ public class BurstiDAtor extends JFrame implements ActionListener {
         }
     }
 
+    private void openURL(String url) {
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+        
+            if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                try {
+                    desktop.browse(new URI(url));
+                } catch (Exception _) {
+                    System.err.println("Unable to open " + url);    
+                }
+            }
+        }
+    }
 
 
     public void actionPerformed(ActionEvent e) {
@@ -102,7 +120,7 @@ public class BurstiDAtor extends JFrame implements ActionListener {
         String msg = null;
         if (s == runWizard) {
             try {
-                BurstWizard.burstDirectoryWizard(null);
+                BurstWizard.burstDirectoryWizard();
             } catch (Exception _) {
                 _.printStackTrace();
                 msg = "An error has occured: " + _.getMessage();
@@ -115,6 +133,11 @@ public class BurstiDAtor extends JFrame implements ActionListener {
             System.exit(0);
         } else if (s == neuronType) {
             changeNeuronType();
+        } else if (s == manual) {
+            openURL("https://github.com/nno/burstiDAtor/releases/download/" + 
+                    "v" + VERSION + "/burstiDAtor.pdf");
+        } else if (s == code) {
+            openURL("https://github.com/nno/burstiDAtor");
         }
 
         if (msg != null) {
