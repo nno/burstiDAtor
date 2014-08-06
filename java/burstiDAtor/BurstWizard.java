@@ -26,7 +26,10 @@ public class BurstWizard {
 		}
 
 		Settings s = Settings.getInstance();
-		String path = dir.getPath();
+        String path = dir.getPath();
+        String parent = dir.getParent();
+
+        s.put("last_source_dir", parent);
 
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
 		String t = ft.format(new Date());
@@ -82,10 +85,9 @@ public class BurstWizard {
     /** 
      * Run the wizard
      */
-	public static void burstDirectoryWizard(String rootdir) throws Exception {
-		File d = null;
-		if (rootdir == null) {
-
+	public static void burstDirectoryWizard(String rootdir, boolean showChooser) throws Exception {
+		File d = rootdir==null ? null : new File(rootdir);
+        if (showChooser) { 
 			JFileChooser chooser = new JFileChooser(d);
 			chooser.setDialogTitle("Select directory with WAVMK txt files");
 			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -93,13 +95,27 @@ public class BurstWizard {
 			if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				d = chooser.getSelectedFile();
 			}
-		} else {
-			d = new File(rootdir);
 		}
-		if (d != null) {
+        
+        if (d != null) {
 			processDirectory(d);
 		}
 	}
+
+    public static void burstDirectoryWizard(String rootdir) throws Exception {
+        burstDirectoryWizard(rootdir, true);
+    }
+
+    public static void burstDirectoryWizard() throws Exception {
+        Settings s = Settings.getInstance();
+        String dir = null;
+        if (s.hasKey("last_source_dir")) {
+            dir = s.getS("last_source_dir");
+        }
+        burstDirectoryWizard(dir);
+    }
+
+    
 
 	public static Vector<File> getBurstFiles(File dir) {
 		if (!dir.isDirectory()) {
@@ -125,6 +141,6 @@ public class BurstWizard {
 		String d = "/Users/nick/organized/201_bursts/exampledata/VTA 2 day control";
         d="/Users/nick/Downloads/Wizard test";
 		// d=null;
-		BurstWizard.burstDirectoryWizard(d);
+		BurstWizard.burstDirectoryWizard(d, false);
 	}
 }
