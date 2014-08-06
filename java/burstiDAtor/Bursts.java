@@ -290,6 +290,7 @@ public class Bursts {
         p.put("avgBuFreqRndUp", ((double) nbs) / recdurrnd);
 
         p.put("avgBuFreq60", (60.0 * (double) nbs) / recdur);
+        p.put("avgBuFreq60RndUp", (60.0 * (double) nbs) / recdurrnd);
 
         // compute stats across bursts
         final String[] statfields = { "nSp", "SpFreq", "BuDur", "interSp" };
