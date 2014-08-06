@@ -59,6 +59,7 @@ Burstidator analysis
 
   + usually this involves double-clicking the ``burstiDAtor.jar`` file.
 
+* Optionally: to switch between burst detection for DA or 5HT neuron burst detection, click ``type: DA`` / ``type: 5HT``.
 * Click *Wizard*.
 * Browse to the folder containing the ``*.txt`` output files from Spike2 (see above).
 * Click *open*. BurstiDAtor will display the number of ``*.txt`` files in that folder.
@@ -86,16 +87,18 @@ Summary file format
 -------------------
 The summary file provides the following information:
 
-======================= ==================================================
+======================= =======================================================
 label                   meaning
-======================= ==================================================
+======================= =======================================================
 firstSp	                First spike
 lastSp                  Last spike 
-recDur                  Recording duration
-recDurRndUp             Recordign duration rounded up
+recDur                  Recording duration (first to last spike)
+recDurRndUp             Recordign duration, rounded up (to 10 seconds)
 nSp                     Total number of spikes
 avgSpRate               Average spikes (seconds per spike)
+avgSpRateRndUp          Average spikes (seconds per spike), rounded up
 avgSpFreq               Average spike frequency (spikes per second)
+avgSpFreqRndUp          Average spike frequency (spikes per second), rounded up
 nBu                     Total number of bursts, set to 0 if no bursts
 nBuOrNada               Total number of bursts, set to empty if no bursts
 pctSpInBu               Percent of spikes in burst
@@ -103,7 +106,9 @@ interBuIvl              Inter-burst interval
 firstToLastBuCentered   First to last burst centered
 CycleBu	                Burst cycle (time/bursts)
 avgBuFreq               Average burst frequency (bursts/s)
-avgBuFreq60             Average burst frequency per minute (bursts/min)
+avgBuFreqRndUp          Average burst frequency (bursts/s), rounded up
+avgBuFreq60             Average burst frequency (bursts/minute)
+avgBuFreq60RndUp        Average burst frequency (bursts/minute), rounded up
 mu_nSp                  Average number of spikes/burst
 md_nSp                  Median number of spikes/burst
 std_nSp                 Standard deviation spikes/burst
@@ -116,7 +121,7 @@ std_SpFreq              Standard deviation firing frequency in bursts
 mu_interSp              Mean inter-spike interval (ISI)
 md_interSp              Median ISI
 std_interSp             Standard deviation ISI
-======================= ==================================================
+======================= =======================================================
 
 
 
