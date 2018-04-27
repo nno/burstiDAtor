@@ -14,9 +14,9 @@ import javax.swing.JOptionPane;
 public class BurstiDAtor extends JFrame implements ActionListener {
     private static final long serialVersionUID = 7782961898610924142L;
 
-    final static String AUTHORS = "Oosterhof, N.N. & Oosterhof, C.A. (2012-2014)";
+    final static String AUTHORS = "Oosterhof, N.N. & Oosterhof, C.A. (2012-2018)";
 
-    final static String VERSION = "0.20";
+    final static String VERSION = "0.21";
     final static String NAME = "burstiDAtor";
     final static String DESC = "a lightweight discharge analysis program for " 
                         + "neural extracellular single unit recordings";
