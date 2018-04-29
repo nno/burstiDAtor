@@ -23,7 +23,7 @@ function bursts=buda_detect_bursts_canonical(spikes,start_ISI,continue_ISI,min_n
 %     .BuDur     Bx1 burst durations
 %     .SpFreq    Bx1 spiking frequencies
 %     .interSp   Bx1 average inter-spike interval
-% 
+%
 % Example:
 %  >> fn='bursts.pr.txt'
 %  >> spikes=read_wavemark_onsets(fn);
@@ -52,42 +52,42 @@ burst_spikecounts=zeros(max_nbursts,1);
 
 for spikepos=1:nspikes
     in_last_spike=spikepos==nspikes;
-    
+
     if ~in_burst && ~in_last_spike && ...
             spikes(spikepos+1)-spikes(spikepos)<start_ISI
         % currently not in burst, and less than start_ISI to previous spike
         % so a new potential birst is started
         in_burst=true;
-        
+
         % tentatively add one to burst_count
         % if later on the burst turns out to be too short one is subtracted
         % from burst_count
         burst_count=burst_count+1;
-        
+
         % store the onset of this burst
         first_spike=spikes(spikepos);
         burst_onsets(burst_count)=first_spike;
-        
+
         % previous and current burst
-        cur_burst_nspikes=2; 
+        cur_burst_nspikes=2;
     elseif in_burst && ~in_last_spike && ...
             spikes(spikepos+1)-spikes(spikepos)<continue_ISI
-        % in a burst and the next spike has than continue_ISI time 
+        % in a burst and the next spike has than continue_ISI time
         % difference with the current spike, so continue the burst
         cur_burst_nspikes=cur_burst_nspikes+1;
     else
         % time difference more than continue_ISI - store current spike
-        if in_burst 
+        if in_burst
             % check to see if enough spikes were in the current burst
             if cur_burst_nspikes>=min_nspikes
                 last_spike=spikes(spikepos);
-                
+
                 % store the current spike
                 burst_durs(burst_count)=last_spike-first_spike;
                 burst_spikecounts(burst_count)=cur_burst_nspikes;
             end
         end
-        
+
         % be ready to detect next burst
         in_burst=false;
     end

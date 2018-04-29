@@ -2,7 +2,7 @@
 % NNO Oct 2013
 
 % set paths
-% Notes: 
+% Notes:
 %  - on windows platforms use '/' instead of '\',
 %  - end each path with a '/'
 
