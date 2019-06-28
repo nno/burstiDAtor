@@ -7,7 +7,8 @@ import java.util.Vector;
 import javax.swing.JFileChooser;
 
 public class Bursts {
-    public static String SUMMARYAPPEND = "_summary.txt", SHORT_SUMMARYAPPEND = "_short" + SUMMARYAPPEND;
+    public static String SUMMARYAPPEND = "_summary.txt",
+	    SHORT_SUMMARYAPPEND = "_short" + SUMMARYAPPEND;
 
     public static enum StatType {
 	FULL, PAIRTABLE, COLTABLE
@@ -29,7 +30,7 @@ public class Bursts {
 
     /**
      * Identifies bursts
-     * 
+     *
      * @return list of bursts detected
      */
     public Vector<Burst> getBursts() {
@@ -61,7 +62,7 @@ public class Bursts {
 
 	// traverse over spikes
 	for (int i = 0; i < nsp; i++) {
-	    double d = sps.get(i);
+	    double d = sps.get(i).doubleValue();
 	    double delta = d - prevonset;
 
 	    if (curburst == null && delta < spstartinterval) {
@@ -153,7 +154,7 @@ public class Bursts {
 
 	if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 	    File filein = fc.getSelectedFile();
-	    File fileout = getCanonicalOuputFile(filein);
+	    File fileout = getCanonicalOutputFile(filein);
 	    props.put("filein", filein);
 	    if (fileout == null) {
 		if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -173,26 +174,14 @@ public class Bursts {
     /**
      * Gets an output file name for a burst file
      */
-    public static File getCanonicalOuputFile(File inputFile) {
-	Settings settings = Settings.getInstance();
+    public static File getCanonicalOutputFile(File inputFile) {
+	return Utils.getCanonicalOutputFile(inputFile, "summaryappend");
 
-	String ext = settings.getS("inputext");
-	String s = inputFile.getPath();
-	if (!s.toLowerCase().endsWith(ext.toLowerCase())) {
-	    return null;
-	}
-
-	int pos = s.length() - ext.length();
-	String s_cut = s.substring(0, pos);
-	String output_ext = "_" + settings.getS("neuron_type") + settings.getS("summaryappend");
-	File outputFile = new File(s_cut + output_ext);
-
-	return outputFile;
     }
 
     /**
      * Computes
-     * 
+     *
      * @param tp statistics type (one of Bursts.StatType. {PAIRTABLE,FULL,COLTABLE}
      * @return Props object with statistics of spikes and bursts
      */
@@ -217,9 +206,11 @@ public class Bursts {
 	    return p;
 	}
 
-	p.put("firstSp", sps.get(0));
-	p.put("lastSp", sps.get(nsp - 1));
-	double recdur = sps.get(nsp - 1) - sps.get(0);
+	double first_spike = sps.get(0).doubleValue();
+	double last_spike = sps.get(nsp-1).doubleValue();
+	p.put("firstSp", first_spike);
+	p.put("lastSp", last_spike);
+	double recdur = last_spike - first_spike ;
 	p.put("recDur", recdur);
 
 	double rnddur = Settings.getInstance().getD("rndupdur");
@@ -229,17 +220,17 @@ public class Bursts {
 	double recdurrnd = Math.round(recdur / rnddur + 1 / (2 * rnddur)) * rnddur;
 	p.put("recDurRndUp", recdurrnd);
 	p.put("nSp", nsp);
-	p.put("avgSpRate", recdur / ((double) nsp));
-	p.put("avgSpRateRndUp", recdurrnd / ((double) nsp));
-	p.put("avgSpFreq", ((double) nsp) / recdur);
-	p.put("avgSpFreqRndUp", ((double) nsp) / recdurrnd);
+	p.put("avgSpRate", recdur / (nsp-1));
+	p.put("avgSpRateRndUp", recdurrnd / ((double) (nsp)));
+	p.put("avgSpFreq", ((double) (nsp-1)) / recdur);
+	p.put("avgSpFreqRndUp", ((double) (nsp)) / recdurrnd);
 
 	// feature added April 2018: coefficient of variation
 	double cvi = Double.NaN; // if less than two bursts CVI is not defined
 	if (nsp > 1) {
 	    Vector<Double> isis = new Vector<Double>();
 	    for (int i = 1; i < nsp; i++) {
-		double isi = sps.get(i) - sps.get(i - 1);
+		double isi = sps.get(i).doubleValue() - sps.get(i - 1).doubleValue();
 		isis.add(isi);
 	    }
 	    double mean_isi = Utils.getStat("mu", isis);

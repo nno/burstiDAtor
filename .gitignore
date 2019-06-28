@@ -3,5 +3,8 @@
 *.m~
 .git.bfg-report
 build
+bin
 *.jar
 .*.sw?
+.classpath
+.project

@@ -2,6 +2,7 @@ package burstiDAtor;
 
 import java.util.TreeMap;
 import java.util.Vector;
+import java.math.BigDecimal;
 
 public class Props {
     final static String FIELDSEP = "\t", LINESEP = "\n", PAIRSEP = ":",
@@ -53,6 +54,8 @@ public class Props {
         return ((String) m.get(k));
     }
 
+
+
     public Object get(String k) {
         return m.get(k);
     }
@@ -97,7 +100,7 @@ public class Props {
 
     /**
      * Helper function that either returns the header or a data line
-     * 
+     *
      * @param sep
      * @param isheader
      * @param headers
@@ -133,7 +136,7 @@ public class Props {
 
     /**
      * Returns a subset of all properties
-     * 
+     *
      * @param fs
      *            fields to keep (null or empty list return all fields)
      * @return new property object
@@ -251,7 +254,7 @@ public class Props {
 
     /**
      * Computes summary statistics
-     * 
+     *
      * @param ps
      *            Vector of properties over which summary stats are computed
      * @param ws
