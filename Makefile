@@ -10,19 +10,10 @@ ENTRY_POINT = burstiDAtor/BurstiDAtor
 
 BUILD_DIR = build/java
 
-SOURCE_FILES = \
-java/burstiDAtor/Burst.java \
-java/burstiDAtor/BurstWizard.java \
-java/burstiDAtor/BurstiDAtor.java \
-java/burstiDAtor/Bursts.java \
-java/burstiDAtor/Props.java \
-java/burstiDAtor/Settings.java \
-java/burstiDAtor/Spikes.java \
-java/burstiDAtor/Utils.java
+SOURCE_FILES = $(wildcard java/burstiDAtor/*.java)
 
 JAVAC = javac
 JFLAGS = -encoding UTF-8
-
 
 vpath %.class build/java
 vpath %.java java
@@ -37,7 +28,7 @@ Default:
 	@echo "make run: run your app."
 	@echo "make jar: package your project into a executable jar."
 
-build: $(SOURCE_FILES:.java=.class) 
+build: ${BUILD_DIR} $(SOURCE_FILES:.java=.class)
 
 # pattern rule
 %.class: %.java
@@ -58,7 +49,7 @@ clean:
 run: build
 	java -cp build/java $(ENTRY_POINT)
 
-jar: build
+jar: clean build
 	jar cvfe $(JAR_PKG) $(ENTRY_POINT) -C build/java .
 
 
