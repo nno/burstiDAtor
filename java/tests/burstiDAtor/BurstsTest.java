@@ -37,10 +37,10 @@ public class BurstsTest {
         for (String k : p0.keyList()) {
             assertAlmostEqual(p0.get(k), s0.get(k));
         }
-        
+
         Burst b1=bursts.get(1);
         Props s1=b1.getStats();
-        
+
         Props p1=new Props();
         p1.put("BuDur",0.02);
         p1.put("SpFreq", 100.);
@@ -49,22 +49,22 @@ public class BurstsTest {
         p1.put("interSp",0.02);
         p1.put("lastSp",1.44);
         p1.put("nSp",2);
-        
+
         for (String k : p1.keyList()) {
             assertAlmostEqual(p1.get(k), s1.get(k));
         }
-        
+
     }
-    
+
     public static void assertAlmostEqual(Object v, Object w) {
         double eps=.0000001;
-        
+
         if (v instanceof Double && w instanceof Double) {
             assert(Math.abs(((Double) v)-((Double) w))<eps);
         } else {
             assertEquals(v,w);
         }
-        
+
     }
 
 }

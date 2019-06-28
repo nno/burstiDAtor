@@ -4,9 +4,9 @@ import java.util.Vector;
 
 /**
  * Contains onset information of spikes in a burst
- * 
+ *
  * @author nick
- * 
+ *
  */
 public class Burst {
     Vector<Double> onsets;
@@ -20,7 +20,7 @@ public class Burst {
 
     /**
      * add a spike to the burst
-     * 
+     *
      * @param onset
      *            time of the spike
      */
@@ -30,7 +30,7 @@ public class Burst {
 
     /**
      * Compute statistics for this burst
-     * 
+     *
      * @param fs
      *            Optional list of property keys to return. If null or empty
      *            then all keys are returned.

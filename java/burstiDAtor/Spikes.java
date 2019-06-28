@@ -5,32 +5,36 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Vector;
 
+
 /**
  * Represents a set of spike onsets from a txt file
- * 
+ *
  * @author nick
- * 
+ *
  */
 public class Spikes {
     String sourcefile;
-    Vector<Double> onsets;
+    Vector<Spike> onsets;
+
 
     public Spikes(File f) {
         this.sourcefile = f.getAbsolutePath();
+
         try {
             BufferedReader r = new BufferedReader(new FileReader(f));
             String line;
 
             String wavemarker = Settings.getInstance().getS("wavemarker");
 
-            onsets = new Vector<Double>();
+            onsets = new Vector<Spike>();
             while ((line = r.readLine()) != null) {
                 String[] split = line.split("\t");
                 if (split.length < 2)
                     continue;
 
                 if (split[0].equals(wavemarker)) {
-                    double onset = Double.parseDouble(split[1]);
+                    String onset_string = split[1];
+                    Spike onset = Spike.fromString(onset_string);
                     onsets.add(onset);
                 }
             }
@@ -40,11 +44,13 @@ public class Spikes {
         }
     }
 
-    public Spikes(String fn, double... os) {
+
+    public Spikes(String fn, double ... os) {
         this.sourcefile = fn;
-        onsets = new Vector<Double>();
-        for (double o : os) {
-            onsets.add(o);
+
+        onsets = new Vector<Spike>();
+        for (Double o : os) {
+            onsets.add(Spike.fromDouble(o));
         }
     }
 
@@ -52,9 +58,20 @@ public class Spikes {
         return onsets.size();
     }
 
-    public double get(int i) {
+    public Spike get(int i) {
         return onsets.get(i);
     }
+
+    public double recordingDuration() {
+	int n = length();
+	if (n==0) {
+	    return 0.0;
+	}
+	Spike first = get(0);
+	Spike last = get(n-1);
+	return last.subtract(first).doubleValue();
+    }
+
 
     public Spikes(String fn) {
         this(new File(fn));
@@ -71,7 +88,7 @@ public class Spikes {
     public String toString() {
         StringBuffer b = new StringBuffer();
         b.append(sourcefile);
-        for (double onset : onsets) {
+        for (Spike onset : onsets) {
             b.append("\n" + onset);
         }
         return b.toString();
