@@ -39,8 +39,8 @@ public class Spikes {
                 }
             }
             r.close();
-        } catch (Exception _) {
-            _.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

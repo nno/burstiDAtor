@@ -18,7 +18,7 @@ public class BurstiDAtor extends JFrame implements ActionListener {
 
     final static String AUTHORS = "Oosterhof, N.N. & Oosterhof, C.A. (2012-2019)";
 
-    final static String VERSION = "0.30wo";
+    final static String VERSION = "0.40";
     final static String NAME = "burstiDAtor";
     final static String DESC = "a lightweight discharge analysis program for "
                         + "neural extracellular single unit recordings";
@@ -139,7 +139,7 @@ public class BurstiDAtor extends JFrame implements ActionListener {
             if (desktop.isSupported(Desktop.Action.BROWSE)) {
                 try {
                     desktop.browse(new URI(url));
-                } catch (Exception _) {
+                } catch (Exception r) {
                     System.err.println("Unable to open " + url);
                 }
             }
@@ -162,9 +162,9 @@ public class BurstiDAtor extends JFrame implements ActionListener {
         if (s == runWizard) {
             try {
                 BurstWizard.burstDirectoryWizard(this);
-            } catch (Exception _) {
-                _.printStackTrace();
-                msg = "An error has occured: " + _.getMessage();
+            } catch (Exception ee) {
+                ee.printStackTrace();
+                msg = "An error has occured: " + ee.getMessage();
             }
         } else if (s == settings) {
             msg = Settings.getInstance().getPairTable(": ");
@@ -193,7 +193,7 @@ public class BurstiDAtor extends JFrame implements ActionListener {
      *
      * @param _
      */
-    public static void main(String... _) {
+    public static void main(String... unused) {
         new BurstiDAtor();
     }
 

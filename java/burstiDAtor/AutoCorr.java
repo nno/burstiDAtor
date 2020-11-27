@@ -55,7 +55,7 @@ public class AutoCorr extends Histogram {
     }
 
 
-    public static void main(String... _) throws Exception {
+    public static void main(String... unused) throws Exception {
 	String d = "/Users/nick/tmp/";
 
 	String[] fns = { "neuron 1 651542.txt", "neuron 2 653286.txt", "Neuron 3 653284.txt" };

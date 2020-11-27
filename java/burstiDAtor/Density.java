@@ -79,7 +79,7 @@ public class Density extends Histogram {
     }
 
 
-    public static void main(String... _) throws Exception {
+    public static void main(String... unused) throws Exception {
 	String d = "/Users/nick/burstidator/";
 /*
 	String[] fns = { "neuron 1 651542.txt",

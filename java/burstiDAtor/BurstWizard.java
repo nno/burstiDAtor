@@ -165,7 +165,7 @@ public class BurstWizard {
 	return fs;
     }
 
-    public static void main(String... _) throws Exception {
+    public static void main(String... unused) throws Exception {
 	String d = "/Users/nick/organized/201_bursts/exampledata/VTA 2 day control";
 	d = "/Users/nick/burstidator";
 
