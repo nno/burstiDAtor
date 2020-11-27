@@ -10,7 +10,7 @@ burstiDAtor
 
 BurstiDAtor is lightweight discharge analysis program for neural extracellular single unit recordings, implementing :ref:`burst detection <burst_detection>` as proposed by [GB84]_ and [HAJ07_].
 
-Burstidator is implemented in the Java and Matlab/Octave languages. 
+Burstidator is implemented in the Java and Matlab/Octave languages.
 
 Releases (including runnable java archive ``.jar`` files and documentation) are available from https://github.com/nno/burstiDAtor/releases.
 
@@ -18,9 +18,9 @@ Source code is available from https://github.com/nno/burstiDAtor.
 
 .. toctree::
     :maxdepth: 2
-   
+
     readme
-    get_started 
+    get_started
     manual
     faq
     about
