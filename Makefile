@@ -27,6 +27,7 @@ Default:
 	@echo "make rebuild: rebuild project."
 	@echo "make run: run your app."
 	@echo "make jar: package your project into a executable jar."
+	@echo "make pdf: build documentation."
 
 build: ${BUILD_DIR} $(SOURCE_FILES:.java=.class)
 
@@ -53,3 +54,5 @@ jar: clean build
 	jar cvfe $(JAR_PKG) $(ENTRY_POINT) -C build/java .
 
 
+pdf:
+	cd doc && make latexpdf
