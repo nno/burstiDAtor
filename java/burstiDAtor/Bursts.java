@@ -7,295 +7,303 @@ import java.util.Vector;
 import javax.swing.JFileChooser;
 
 public class Bursts {
-    public static String SUMMARYAPPEND = "_summary.txt",
-	    SHORT_SUMMARYAPPEND = "_short" + SUMMARYAPPEND;
+	public static String SUMMARYAPPEND = "_summary.txt",
+				SHORT_SUMMARYAPPEND = "_short" + SUMMARYAPPEND;
 
-    public static enum StatType {
-	FULL, PAIRTABLE, COLTABLE
-    };
+	public static enum StatType {
+		FULL, PAIRTABLE, COLTABLE
+	};
 
-    private Spikes sps;
+	private Spikes sps;
 
-    public Bursts(Spikes s) {
-	this.sps = s;
-    }
-
-    public Bursts(File f) {
-	this(new Spikes(f));
-    }
-
-    public Bursts(String fn) {
-	this(new Spikes(fn));
-    }
-
-    /**
-     * Identifies bursts
-     *
-     * @return list of bursts detected
-     */
-    public Vector<Burst> getBursts() {
-	Vector<Burst> bs = new Vector<Burst>();
-	Settings set = Settings.getInstance();
-
-	// burst detection parameters
-	String prefix = set.getS("neuron_type") + "_";
-
-	double spstartinterval = set.getD(prefix + "maxburststart");
-	double spcontinueinterval = set.getD(prefix + "maxburstcontinue");
-	int minspinburst = set.getI(prefix + "minspikesinburst");
-
-	// ensure that burst continue interval not less than burst
-	// start interval
-	if (spcontinueinterval < spstartinterval) {
-	    throw new RuntimeException("Not supported intervals");
+	public Bursts(Spikes s) {
+		this.sps = s;
 	}
 
-	int nsp = sps.length(); // number of spikes
-
-	if (nsp == 0) {
-	    // no spikes, return
-	    return bs;
+	public Bursts(File f) {
+		this(new Spikes(f));
 	}
 
-	double prevonset = -1000000d;// Double.MIN_VALUE;
-	Burst curburst = null;
+	public Bursts(String fn) {
+		this(new Spikes(fn));
+	}
 
-	// traverse over spikes
-	for (int i = 0; i < nsp; i++) {
-	    double d = sps.get(i).doubleValue();
-	    double delta = d - prevonset;
+	/**
+	 * Identifies bursts
+	 *
+	 * @return list of bursts detected
+	 */
+	public Vector<Burst> getBursts() {
+		Vector<Burst> bs = new Vector<Burst>();
+		Settings set = Settings.getInstance();
 
-	    if (curburst == null && delta < spstartinterval) {
-		// start a new burst
-		curburst = new Burst();
-		curburst.add(prevonset);
-		curburst.add(d);
-	    } else if (curburst != null && delta < spcontinueinterval) {
-		// continue current burst
-		curburst.add(d);
-	    } else {
-		// add a burst if enough spikes
-		if (curburst != null && curburst.getStats().getI("nSp") >= minspinburst) {
-		    bs.add(curburst);
+		// burst detection parameters
+		String prefix = set.getS("neuron_type") + "_";
+
+		double spstartinterval = set.getD(prefix + "maxburststart");
+		double spcontinueinterval = set.getD(prefix + "maxburstcontinue");
+		int minspinburst = set.getI(prefix + "minspikesinburst");
+
+		// ensure that burst continue interval not less than burst
+		// start interval
+		if (spcontinueinterval < spstartinterval) {
+			throw new RuntimeException("Not supported intervals");
 		}
-		curburst = null;
-	    }
-	    prevonset = d;
-	}
 
-	// add last burst if at the very end of the recording interval
-	if (curburst != null && curburst.getStats().getI("nSp") >= minspinburst) {
-	    bs.add(curburst);
-	}
+		int nsp = sps.length(); // number of spikes
 
-	return bs;
-    }
-
-    public String toString() {
-	return getBursts().toString();
-    }
-
-    public Vector<Props> getBurstStats() {
-	return getBurstStats("nBu", "SpFreq", "BuDur", "interSp");
-    }
-
-    public Vector<Props> getBurstStats(String... fs) {
-	Vector<Props> ps = new Vector<Props>();
-	for (Burst b : getBursts()) {
-	    ps.add(b.getStats(fs));
-	}
-	return ps;
-    }
-
-    public String getIndividualBurstsTable() {
-	String SEP = Props.FIELDSEP;
-	String NL = Props.LINESEP; // newline
-	Vector<Burst> bursts = getBursts();
-	StringBuffer b = new StringBuffer();
-	int n = bursts.size();
-	if (n > 0) {
-	    for (int k = 0; k < n; k++) {
-		Burst burst = bursts.get(k);
-		Props s = burst.getStats();
-		if (k == 0) {
-		    // header
-		    b.append("BuNr" + SEP + s.getHeader() + NL);
+		if (nsp == 0) {
+			// no spikes, return
+			return bs;
 		}
-		// line with data, prepended by spike number
-		b.append((k + 1) + SEP + s.getLine() + NL);
-	    }
-	} else {
-	    return "* no bursts found *";
+
+		double prevonset = -1000000d;// Double.MIN_VALUE;
+		Burst curburst = null;
+
+		// traverse over spikes
+		for (int i = 0; i < nsp; i++) {
+			double d = sps.get(i).doubleValue();
+			double delta = d - prevonset;
+
+			if (curburst == null && delta < spstartinterval) {
+				// start a new burst
+				curburst = new Burst();
+				curburst.add(prevonset);
+				curburst.add(d);
+			} else if (curburst != null && delta < spcontinueinterval) {
+				// continue current burst
+				curburst.add(d);
+			} else {
+				// add a burst if enough spikes
+				if (curburst != null && curburst.getStats()
+							.getI("nSp") >= minspinburst) {
+					bs.add(curburst);
+				}
+				curburst = null;
+			}
+			prevonset = d;
+		}
+
+		// add last burst if at the very end of the recording interval
+		if (curburst != null
+					&& curburst.getStats().getI("nSp") >= minspinburst) {
+			bs.add(curburst);
+		}
+
+		return bs;
 	}
-	return b.toString();
-    }
 
-    public String getSummaryPairTable() {
-	StringBuffer b = new StringBuffer();
-	Props stats = getStats(StatType.PAIRTABLE);
-	b.append(stats.getPairTable());
-	return b.toString();
-    }
+	public String toString() {
+		return getBursts().toString();
+	}
 
-    public String getFullReport() {
-	return "=== Individual bursts ===\n" + getIndividualBurstsTable() + "\n=== Summary of bursts ===\n"
-		+ getSummaryPairTable();
-    }
+	public Vector<Props> getBurstStats() {
+		return getBurstStats("nBu", "SpFreq", "BuDur", "interSp");
+	}
 
-    public String[] getFullReportLines() {
-	return getFullReport().split("\n");
-    }
+	public Vector<Props> getBurstStats(String... fs) {
+		Vector<Props> ps = new Vector<Props>();
+		for (Burst b : getBursts()) {
+			ps.add(b.getStats(fs));
+		}
+		return ps;
+	}
 
-    public static Props individualBurstWizardProps(String rootdir) {
-	Props props = new Props();
-	File f = rootdir == null ? null : new File(rootdir);
+	public String getIndividualBurstsTable() {
+		String SEP = Props.FIELDSEP;
+		String NL = Props.LINESEP; // newline
+		Vector<Burst> bursts = getBursts();
+		StringBuffer b = new StringBuffer();
+		int n = bursts.size();
+		if (n > 0) {
+			for (int k = 0; k < n; k++) {
+				Burst burst = bursts.get(k);
+				Props s = burst.getStats();
+				if (k == 0) {
+					// header
+					b.append("BuNr" + SEP + s.getHeader() + NL);
+				}
+				// line with data, prepended by spike number
+				b.append((k + 1) + SEP + s.getLine() + NL);
+			}
+		} else {
+			return "* no bursts found *";
+		}
+		return b.toString();
+	}
 
-	JFileChooser fc = new JFileChooser(f);
+	public String getSummaryPairTable() {
+		StringBuffer b = new StringBuffer();
+		Props stats = getStats(StatType.PAIRTABLE);
+		b.append(stats.getPairTable());
+		return b.toString();
+	}
 
-	if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-	    File filein = fc.getSelectedFile();
-	    File fileout = getCanonicalOutputFile(filein);
-	    props.put("filein", filein);
-	    if (fileout == null) {
+	public String getFullReport() {
+		return "=== Individual bursts ===\n" + getIndividualBurstsTable()
+					+ "\n=== Summary of bursts ===\n"
+					+ getSummaryPairTable();
+	}
+
+	public String[] getFullReportLines() {
+		return getFullReport().split("\n");
+	}
+
+	public static Props individualBurstWizardProps(String rootdir) {
+		Props props = new Props();
+		File f = rootdir == null ? null : new File(rootdir);
+
+		JFileChooser fc = new JFileChooser(f);
+
 		if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-		    fileout = fc.getSelectedFile();
-		    props.put("fileout", fileout);
-		    return props;
+			File filein = fc.getSelectedFile();
+			File fileout = getCanonicalOutputFile(filein);
+			props.put("filein", filein);
+			if (fileout == null) {
+				if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+					fileout = fc.getSelectedFile();
+					props.put("fileout", fileout);
+					return props;
+				}
+			} else {
+				props.put("fileout", fileout);
+				return props;
+			}
 		}
-	    } else {
-		props.put("fileout", fileout);
-		return props;
-	    }
-	}
-	return null;
+		return null;
 
-    }
-
-    /**
-     * Gets an output file name for a burst file
-     */
-    public static File getCanonicalOutputFile(File inputFile) {
-	return Utils.getCanonicalOutputFile(inputFile, "summaryappend");
-
-    }
-
-    /**
-     * Computes
-     *
-     * @param tp statistics type (one of Bursts.StatType. {PAIRTABLE,FULL,COLTABLE}
-     * @return Props object with statistics of spikes and bursts
-     */
-
-    public Props getStats(StatType tp) {
-	if (tp == null) {
-	    tp = StatType.FULL;
-	}
-	Props p = new Props();
-	int nsp = sps.length();
-
-	if (tp == StatType.FULL || tp == StatType.PAIRTABLE) {
-	    p.put("date", (new Date()).toString());
-	    String desc = String.format("%s v%s by %s", BurstiDAtor.NAME, BurstiDAtor.VERSION, BurstiDAtor.AUTHORS);
-	    p.put("analysis", desc);
 	}
 
-	String fn = sps.getName();
-	p.put("filename", fn);
+	/**
+	 * Gets an output file name for a burst file
+	 */
+	public static File getCanonicalOutputFile(File inputFile) {
+		return Utils.getCanonicalOutputFile(inputFile, "summaryappend");
 
-	if (nsp == 0) {
-	    return p;
 	}
 
-	double first_spike = sps.get(0).doubleValue();
-	double last_spike = sps.get(nsp-1).doubleValue();
-	p.put("firstSp", first_spike);
-	p.put("lastSp", last_spike);
-	double recdur = last_spike - first_spike ;
-	p.put("recDur", recdur);
+	/**
+	 * Computes
+	 *
+	 * @param tp statistics type (one of Bursts.StatType. {PAIRTABLE,FULL,COLTABLE}
+	 * @return Props object with statistics of spikes and bursts
+	 */
 
-	double rnddur = Settings.getInstance().getD("rndupdur");
+	public Props getStats(StatType tp) {
+		if (tp == null) {
+			tp = StatType.FULL;
+		}
+		Props p = new Props();
+		int nsp = sps.length();
 
-	// round up to 10 second bins, or whatever is the setting
-	// of "rndupdur"
-	double recdurrnd = Math.round(recdur / rnddur + 1 / (2 * rnddur)) * rnddur;
-	p.put("recDurRndUp", recdurrnd);
-	p.put("nSp", nsp);
-	p.put("avgSpRate", recdur / (nsp-1));
-	p.put("avgSpRateRndUp", recdurrnd / ((double) (nsp)));
-	p.put("avgSpFreq", ((double) (nsp-1)) / recdur);
-	p.put("avgSpFreqRndUp", ((double) (nsp)) / recdurrnd);
+		if (tp == StatType.FULL || tp == StatType.PAIRTABLE) {
+			p.put("date", (new Date()).toString());
+			String desc = String.format("%s v%s by %s", BurstiDAtor.NAME,
+						BurstiDAtor.VERSION, BurstiDAtor.AUTHORS);
+			p.put("analysis", desc);
+		}
 
-	// feature added April 2018: coefficient of variation
-	double cvi = Double.NaN; // if less than two bursts CVI is not defined
-	if (nsp > 1) {
-	    Vector<Double> isis = new Vector<Double>();
-	    for (int i = 1; i < nsp; i++) {
-		double isi = sps.get(i).doubleValue() - sps.get(i - 1).doubleValue();
-		isis.add(isi);
-	    }
-	    double mean_isi = Utils.getStat("mu", isis);
-	    double sd_isi = Utils.getStat("std", isis);
-	    cvi = sd_isi / mean_isi * 100.0;
+		String fn = sps.getName();
+		p.put("filename", fn);
+
+		if (nsp == 0) {
+			return p;
+		}
+
+		double first_spike = sps.get(0).doubleValue();
+		double last_spike = sps.get(nsp - 1).doubleValue();
+		p.put("firstSp", first_spike);
+		p.put("lastSp", last_spike);
+		double recdur = last_spike - first_spike;
+		p.put("recDur", recdur);
+
+		double rnddur = Settings.getInstance().getD("rndupdur");
+
+		// round up to 10 second bins, or whatever is the setting
+		// of "rndupdur"
+		double recdurrnd = Math.round(recdur / rnddur + 1 / (2 * rnddur))
+					* rnddur;
+		p.put("recDurRndUp", recdurrnd);
+		p.put("nSp", nsp);
+		p.put("avgSpRate", recdur / (nsp - 1));
+		p.put("avgSpRateRndUp", recdurrnd / ((double) (nsp)));
+		p.put("avgSpFreq", ((double) (nsp - 1)) / recdur);
+		p.put("avgSpFreqRndUp", ((double) (nsp)) / recdurrnd);
+
+		// feature added April 2018: coefficient of variation
+		double cvi = Double.NaN; // if less than two bursts CVI is not defined
+		if (nsp > 1) {
+			Vector<Double> isis = new Vector<Double>();
+			for (int i = 1; i < nsp; i++) {
+				double isi = sps.get(i).doubleValue()
+							- sps.get(i - 1).doubleValue();
+				isis.add(isi);
+			}
+			double mean_isi = Utils.getStat("mu", isis);
+			double sd_isi = Utils.getStat("std", isis);
+			cvi = sd_isi / mean_isi * 100.0;
+		}
+		p.put("CVI", cvi);
+
+		Vector<Burst> bs = getBursts();
+		int nbs = bs.size();
+		p.put("nBu", nbs);
+
+		String nbs_or_nada = "" + (nbs == 0 ? "" : nbs);
+		p.put("nBuOrNada", nbs_or_nada);
+
+		if (nbs == 0) {
+			return p;
+		}
+
+		double firstbucenter = Double.NaN;
+		double lastbucenter = Double.NaN;
+
+		if (nbs > 1) {
+			Props pb0 = bs.get(0).getStats((String) null); // first burst
+			Props pbX = bs.get(nbs - 1).getStats((String) null); // last burst
+
+			firstbucenter = pb0.getD("center");
+			lastbucenter = pbX.getD("center");
+		}
+
+		int spinbucount = 0; // spikes in burst
+		double prevburstend = 0; // end of previous burst
+		double interburstsum = 0; // sum of interburst intervals
+		for (int k = 0; k < nbs; k++) {
+			Burst b = bs.get(k);
+			Props s = b.getStats((String) null);
+			spinbucount += s.getI("nSp");
+			double burststart = s.getD("firstSp");
+			double burstend = s.getD("lastSp");
+
+			if (k > 0) {
+				interburstsum += burststart - prevburstend;
+			}
+
+			prevburstend = burstend;
+		}
+		double pctinburst = 100 * ((double) spinbucount) / ((double) nsp);
+		p.put("pctSpInBu", pctinburst);
+
+		p.put("interBuIvl", interburstsum / (((double) nbs) - 1));
+		p.put("firstToLastBuCentered", lastbucenter - firstbucenter);
+		p.put("CycleBu",
+					(lastbucenter - firstbucenter) / (((double) nbs) - 1));
+
+		p.put("avgBuFreq", ((double) nbs) / recdur);
+		p.put("avgBuFreqRndUp", ((double) nbs) / recdurrnd);
+
+		p.put("avgBuFreq60", (60.0 * (double) nbs) / recdur);
+		p.put("avgBuFreq60RndUp", (60.0 * (double) nbs) / recdurrnd);
+
+		// compute stats across bursts
+		final String[] statfields = { "nSp", "SpFreq", "BuDur", "interSp" };
+		final String[] summarytps = { "mu", "md", "std" };
+		Props sumstats = Props.getSummaryStats(getBurstStats(statfields),
+					summarytps);
+		p.append(sumstats);
+
+		return p;
 	}
-	p.put("CVI", cvi);
-
-	Vector<Burst> bs = getBursts();
-	int nbs = bs.size();
-	p.put("nBu", nbs);
-
-	String nbs_or_nada = "" + (nbs == 0 ? "" : nbs);
-	p.put("nBuOrNada", nbs_or_nada);
-
-	if (nbs == 0) {
-	    return p;
-	}
-
-	double firstbucenter = Double.NaN;
-	double lastbucenter = Double.NaN;
-
-	if (nbs > 1) {
-	    Props pb0 = bs.get(0).getStats((String) null); // first burst
-	    Props pbX = bs.get(nbs - 1).getStats((String) null); // last burst
-
-	    firstbucenter = pb0.getD("center");
-	    lastbucenter = pbX.getD("center");
-	}
-
-	int spinbucount = 0; // spikes in burst
-	double prevburstend = 0; // end of previous burst
-	double interburstsum = 0; // sum of interburst intervals
-	for (int k = 0; k < nbs; k++) {
-	    Burst b = bs.get(k);
-	    Props s = b.getStats((String) null);
-	    spinbucount += s.getI("nSp");
-	    double burststart = s.getD("firstSp");
-	    double burstend = s.getD("lastSp");
-
-	    if (k > 0) {
-		interburstsum += burststart - prevburstend;
-	    }
-
-	    prevburstend = burstend;
-	}
-	double pctinburst = 100 * ((double) spinbucount) / ((double) nsp);
-	p.put("pctSpInBu", pctinburst);
-
-	p.put("interBuIvl", interburstsum / (((double) nbs) - 1));
-	p.put("firstToLastBuCentered", lastbucenter - firstbucenter);
-	p.put("CycleBu", (lastbucenter - firstbucenter) / (((double) nbs) - 1));
-
-	p.put("avgBuFreq", ((double) nbs) / recdur);
-	p.put("avgBuFreqRndUp", ((double) nbs) / recdurrnd);
-
-	p.put("avgBuFreq60", (60.0 * (double) nbs) / recdur);
-	p.put("avgBuFreq60RndUp", (60.0 * (double) nbs) / recdurrnd);
-
-	// compute stats across bursts
-	final String[] statfields = { "nSp", "SpFreq", "BuDur", "interSp" };
-	final String[] summarytps = { "mu", "md", "std" };
-	Props sumstats = Props.getSummaryStats(getBurstStats(statfields), summarytps);
-	p.append(sumstats);
-
-	return p;
-    }
 }
