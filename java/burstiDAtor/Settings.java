@@ -19,9 +19,13 @@ public class Settings extends Props {
         put("RTN_maxburstcontinue", .01d);
         put("RTN_minspikesinburst", 2);
 
-        put("PFC_maxburststart", .045d);
-        put("PFC_maxburstcontinue", .045d);
-        put("PFC_minspikesinburst", 2);
+        put("GLU16_maxburststart", .16d);
+        put("GLU16_maxburstcontinue", .16d);
+        put("GLU16_minspikesinburst", 2);
+
+        put("GLU45_maxburststart", .045d);
+        put("GLU45_maxburstcontinue", .045d);
+        put("GLU45_minspikesinburst", 2);
 
         put("autocorr_min", "0.00000");
         put("autocorr_max", "2.00000");
@@ -33,7 +37,7 @@ public class Settings extends Props {
         put("supported_outputs","graphs,no graphs");
         put("output", getS("supported_outputs").split(",")[0]);
 
-        put("supported_neuron_types","DA,5HT,RTN,PFC");
+        put("supported_neuron_types","DA,5HT,RTN,GLU-16,GLU-45");
         put("neuron_type",getS("supported_neuron_types").split(",")[0]);
 
         put("fieldsep", "\t");
