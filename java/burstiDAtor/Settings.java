@@ -19,13 +19,13 @@ public class Settings extends Props {
         put("RTN_maxburstcontinue", .01d);
         put("RTN_minspikesinburst", 2);
 
-        put("GLU16_maxburststart", .16d);
-        put("GLU16_maxburstcontinue", .16d);
-        put("GLU16_minspikesinburst", 2);
+        put("GLU-16_maxburststart", .16d);
+        put("GLU-16_maxburstcontinue", .16d);
+        put("GLU-16_minspikesinburst", 2);
 
-        put("GLU45_maxburststart", .045d);
-        put("GLU45_maxburstcontinue", .045d);
-        put("GLU45_minspikesinburst", 2);
+        put("GLU-45_maxburststart", .045d);
+        put("GLU-45_maxburstcontinue", .045d);
+        put("GLU-45_minspikesinburst", 2);
 
         put("autocorr_min", "0.00000");
         put("autocorr_max", "2.00000");
