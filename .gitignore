@@ -8,3 +8,4 @@ bin
 .*.sw?
 .classpath
 .project
+java/burstiDAtor/*.class
