@@ -60,6 +60,7 @@ Burstidator analysis
   + usually this involves double-clicking the ``burstiDAtor.jar`` file.
 
 * Optionally: to switch between burst detection for DA (dopamine), 5HT (serotonin), RTN (reticular thalamic nucleus) or GLU (glutamate) neuron burst detection, click ``type: DA`` / ``type: 5HT`` / ``type: RTN`` / ``type: GLU``.
+* Optionally: to set your own burst detection parameters, select ``User type`` and set three parameters: maximum inter-spike interval to start a burst, maximum inter-spike. and mininum number of spikes to form a burst.
 * Click *Wizard*.
 * Browse to the folder containing the ``*.txt`` output files from Spike2 (see above).
 * Click *open*. BurstiDAtor will display the number of ``*.txt`` files in that folder.

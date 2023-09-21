@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Vector;
 
-
 /**
  * Represents a set of spike onsets from a txt file
  *
@@ -15,7 +14,6 @@ import java.util.Vector;
 public class Spikes {
     String sourcefile;
     Vector<Spike> onsets;
-
 
     public Spikes(File f) {
         this.sourcefile = f.getAbsolutePath();
@@ -44,8 +42,7 @@ public class Spikes {
         }
     }
 
-
-    public Spikes(String fn, double ... os) {
+    public Spikes(String fn, double... os) {
         this.sourcefile = fn;
 
         onsets = new Vector<Spike>();
@@ -63,15 +60,14 @@ public class Spikes {
     }
 
     public double recordingDuration() {
-	int n = length();
-	if (n==0) {
-	    return 0.0;
-	}
-	Spike first = get(0);
-	Spike last = get(n-1);
-	return last.subtract(first).doubleValue();
+        int n = length();
+        if (n == 0) {
+            return 0.0;
+        }
+        Spike first = get(0);
+        Spike last = get(n - 1);
+        return last.subtract(first).doubleValue();
     }
-
 
     public Spikes(String fn) {
         this(new File(fn));

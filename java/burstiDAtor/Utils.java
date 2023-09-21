@@ -53,20 +53,22 @@ public class Utils {
         w.close();
     }
 
-    public static File getCanonicalOutputFile(File inputFile, String output_key) {
-	Settings settings = Settings.getInstance();
+    public static File getCanonicalOutputFile(File inputFile,
+            String output_key) {
+        Settings settings = Settings.getInstance();
 
-	String ext = settings.getS("inputext");
-	String s = inputFile.getPath();
-	if (!s.toLowerCase().endsWith(ext.toLowerCase())) {
-	    return null;
-	}
+        String ext = settings.getS("inputext");
+        String s = inputFile.getPath();
+        if (!s.toLowerCase().endsWith(ext.toLowerCase())) {
+            return null;
+        }
 
-	int pos = s.length() - ext.length();
-	String s_cut = s.substring(0, pos);
-	String output_ext = "_" + settings.getS("neuron_type") + settings.getS(output_key);
-	File outputFile = new File(s_cut + output_ext);
+        int pos = s.length() - ext.length();
+        String s_cut = s.substring(0, pos);
+        String output_ext = "_" + settings.getS("neuron_type")
+                + settings.getS(output_key);
+        File outputFile = new File(s_cut + output_ext);
 
-	return outputFile;
+        return outputFile;
     }
 }

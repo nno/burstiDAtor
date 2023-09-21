@@ -21,8 +21,7 @@ public class Burst {
     /**
      * add a spike to the burst
      *
-     * @param onset
-     *            time of the spike
+     * @param onset time of the spike
      */
     public void add(double onset) {
         onsets.add(onset);
@@ -31,16 +30,14 @@ public class Burst {
     /**
      * Compute statistics for this burst
      *
-     * @param fs
-     *            Optional list of property keys to return. If null or empty
-     *            then all keys are returned.
-     * @return Props instance containing properties of this burst, with a subset
-     *         of the following keys (or all if fs is null or empty): "nSp"
-     *         (number of spikes), "firstSp" (onset of first spike), "lastSp"
-     *         (onset of last spike), "center" (average of first and last
-     *         spike), "BuDur" (duration of the burst), "SpFreq" (spike
-     *         frequency in the burst), and "interSp" (interspike interval in
-     *         the burst).
+     * @param fs Optional list of property keys to return. If null or empty then all
+     *           keys are returned.
+     * @return Props instance containing properties of this burst, with a subset of
+     *         the following keys (or all if fs is null or empty): "nSp" (number of
+     *         spikes), "firstSp" (onset of first spike), "lastSp" (onset of last
+     *         spike), "center" (average of first and last spike), "BuDur" (duration
+     *         of the burst), "SpFreq" (spike frequency in the burst), and "interSp"
+     *         (interspike interval in the burst).
      */
     public Props getStats(String... fs) {
         Props s = new Props();
@@ -61,8 +58,9 @@ public class Burst {
         s.put("SpFreq", freq);
         s.put("interSp", dur / (double) (n - 1));
 
-        Props r = (fs == null || fs.length == 0 || (fs.length == 1 && fs[0] == null)) ? s
-                : s.filter(fs);
+        Props r = (fs == null || fs.length == 0
+                || (fs.length == 1 && fs[0] == null)) ? s
+                        : s.filter(fs);
         return r;
     }
 
