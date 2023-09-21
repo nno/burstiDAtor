@@ -32,11 +32,11 @@ public class Settings extends Props {
         put("density_min_bins", 10);
         put("density_step", "1.000000");
 
-        put("supported_outputs","graphs,no graphs");
+        put("supported_outputs", "graphs,no graphs");
         put("output", getS("supported_outputs").split(",")[0]);
 
-        put("supported_neuron_types","DA,5HT,RTN,GLU-16,GLU-45");
-        put("neuron_type",getS("supported_neuron_types").split(",")[0]);
+        put("supported_neuron_types", "DA,5HT,RTN,GLU-16,GLU-45");
+        put("neuron_type", getS("supported_neuron_types").split(",")[0]);
 
         put("fieldsep", "\t");
         put("linesep", "\n");

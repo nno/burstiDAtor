@@ -54,8 +54,6 @@ public class Props {
         return ((String) m.get(k));
     }
 
-
-
     public Object get(String k) {
         return m.get(k);
     }
@@ -107,7 +105,8 @@ public class Props {
      * @return
      */
 
-    private String __getHL(String sep, boolean isheader, Vector<String> headers) {
+    private String __getHL(String sep, boolean isheader,
+            Vector<String> headers) {
         StringBuffer b = new StringBuffer();
         int n = headers.size();
         if (n > 0) {
@@ -137,12 +136,12 @@ public class Props {
     /**
      * Returns a subset of all properties
      *
-     * @param fs
-     *            fields to keep (null or empty list return all fields)
+     * @param fs fields to keep (null or empty list return all fields)
      * @return new property object
      */
     public Props filter(String... fs) {
-        if (fs == null || fs.length == 0 || (fs.length == 1 && fs[0] == null)) {
+        if (fs == null || fs.length == 0
+                || (fs.length == 1 && fs[0] == null)) {
             return clone();
         }
 
@@ -255,10 +254,8 @@ public class Props {
     /**
      * Computes summary statistics
      *
-     * @param ps
-     *            Vector of properties over which summary stats are computed
-     * @param ws
-     *            Which stats must be computed ("mu" for mean, "md" for median)
+     * @param ps Vector of properties over which summary stats are computed
+     * @param ws Which stats must be computed ("mu" for mean, "md" for median)
      * @return Properties with summary statistics
      */
 

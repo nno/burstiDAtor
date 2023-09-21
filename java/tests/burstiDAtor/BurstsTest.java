@@ -23,7 +23,7 @@ public class BurstsTest {
         System.out.println(bursts);
         assertEquals(bursts.size(), 2);
         Burst b0 = bursts.get(0);
-        Props s0=b0.getStats();
+        Props s0 = b0.getStats();
 
         Props p0 = new Props();
         p0.put("BuDur", 0.15);
@@ -38,17 +38,17 @@ public class BurstsTest {
             assertAlmostEqual(p0.get(k), s0.get(k));
         }
 
-        Burst b1=bursts.get(1);
-        Props s1=b1.getStats();
+        Burst b1 = bursts.get(1);
+        Props s1 = b1.getStats();
 
-        Props p1=new Props();
-        p1.put("BuDur",0.02);
+        Props p1 = new Props();
+        p1.put("BuDur", 0.02);
         p1.put("SpFreq", 100.);
-        p1.put("center",1.43);
-        p1.put("firstSp",1.42);
-        p1.put("interSp",0.02);
-        p1.put("lastSp",1.44);
-        p1.put("nSp",2);
+        p1.put("center", 1.43);
+        p1.put("firstSp", 1.42);
+        p1.put("interSp", 0.02);
+        p1.put("lastSp", 1.44);
+        p1.put("nSp", 2);
 
         for (String k : p1.keyList()) {
             assertAlmostEqual(p1.get(k), s1.get(k));
@@ -57,12 +57,12 @@ public class BurstsTest {
     }
 
     public static void assertAlmostEqual(Object v, Object w) {
-        double eps=.0000001;
+        double eps = .0000001;
 
         if (v instanceof Double && w instanceof Double) {
-            assert(Math.abs(((Double) v)-((Double) w))<eps);
+            assert (Math.abs(((Double) v) - ((Double) w)) < eps);
         } else {
-            assertEquals(v,w);
+            assertEquals(v, w);
         }
 
     }
