@@ -8,3 +8,7 @@ About the authors
 + Chris A. Oosterhof (chris `dot` oosterhof `at` theroyal `dot` ca) is a PhD student at the Institute of Mental Health Research, University of Ottowa, Canada.
 
 They are brothers.
+
+Acknowledgements
+================
+Thanks to Rami Hamati for adding the GLU-45 parameters.
